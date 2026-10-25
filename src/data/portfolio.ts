@@ -1,21 +1,22 @@
 export const profile = {
-  name: "Satish Kumar N",
+  name: "Satish Kumar Nagaraj",
   location: "London, United Kingdom",
-  headline: "Driven by data. Defined by discipline. Inspired by innovation.",
+  headline: "Data science, operations and performance analytics — grounded in discipline.",
   summary:
-    "Data science graduate, operations professional, Shito-Ryu karate athlete and digital creator. I bring analytical thinking and a disciplined approach to complex, practical challenges.",
-  email: null as string | null,
+    "I’m an MSc Data Science graduate with Distinction, building experience across food manufacturing operations, continuous improvement support and sports performance analytics. A Shito-Ryu second dan with more than 15 years in karate, I bring analytical thinking and long-term discipline to practical challenges.",
+  email: "satishkumarnagaraj2002@gmail.com",
   linkedIn: null as string | null,
   github: null as string | null,
   cvPath: null as string | null,
 };
 
 export const roles = [
-  "Data Science Graduate",
-  "Data & Analytics Professional",
-  "Shito-Ryu Karate Athlete",
+  "MSc Data Science · Distinction",
+  "Operations & Performance Analytics",
+  "Continuous Improvement Support",
+  "Shito-Ryu Karate · 2nd Dan",
+  "International Karate Medalist",
   "Web Developer",
-  "Continuous Improvement Enthusiast",
 ];
 
 export const experience = [
@@ -25,45 +26,64 @@ export const experience = [
     location: "United Kingdom",
     period: "December 2025 — Present",
     roles: [
-      { title: "Production Operative", period: "December 2025 — June 2026" },
+      { title: "Production Operative", period: "December 2025 — May 2026" },
       {
-        title: "Operations / Goods In / Ins & Outs responsibilities",
+        title: "Operations Intake – Inbound & Outbound | Continuous Improvement Support",
         period: "June 2026 — Present",
       },
     ],
     description:
-      "Supporting daily production and operational workflows, with hands-on exposure to inventory movements, dispatch preparation and the accuracy behind reliable food manufacturing.",
+      "Progressed from production operations into Operations Intake, supporting inbound and outbound workflows, data accuracy, inventory movement, production coordination and continuous improvement activity in a fast-paced food manufacturing environment.",
     responsibilities: [
-      "Production workflows, meal quantities and dispatch preparation",
-      "Palletisation, goods intake and inventory movements",
-      "Delivery documentation, purchase orders and stock-related records",
-      "Operational Excel records and temperature logs",
-      "Stock discrepancy reporting and inventory reconciliation support",
-      "Understanding material flows, hand-offs and operational bottlenecks",
+      "Monitor inbound and outbound activity, Goods In and Goods Out processes",
+      "Record and verify meal production, dispatch quantities and palletisation",
+      "Maintain operational records in Microsoft Excel, including temperature data",
+      "Review purchase orders, delivery documents and Advance Shipping Notices",
+      "Monitor inventory movement, stock discrepancies, waste and loss reasons",
+      "Support stock reconciliation, production weight analysis and variance review",
+      "Work with production, warehouse, supply chain and operations colleagues",
     ],
     skills: [
       "Operational data accuracy",
       "Excel reporting",
       "Inventory management",
-      "Process understanding",
-      "Problem solving",
+      "Inbound & outbound operations",
+      "Continuous improvement support",
+      "Variance analysis",
       "Cross-functional communication",
     ],
-    note: "Functional responsibilities are described accurately; no formal promotion or analyst appointment is implied.",
+    note: "Continuous improvement and analytical work are described as support and exposure; no formal analyst appointment or measured business outcome is claimed.",
   },
   {
-    organization: "Princeton Smart Engineers",
+    organization: "Allied Karate Club London",
+    area: "Sports performance analytics",
+    location: "London, United Kingdom",
+    period: "October 2026 — Present",
+    roles: [{ title: "Performance & Data Analyst", period: "October 2026 — Present" }],
+    description:
+      "Applying data analytics knowledge alongside extensive karate experience to explore athlete development and support informed coaching and club decisions.",
+    responsibilities: [
+      "Explore student attendance, athlete performance and progression",
+      "Review grading performance and retention trends",
+      "Support club performance reporting and data-informed discussions",
+      "Explore appropriate dashboards and reporting approaches",
+    ],
+    skills: ["Sports analytics", "Performance monitoring", "Reporting", "Karate"],
+    note: "Dashboards, implemented systems and measured improvements are not claimed as completed outcomes.",
+  },
+  {
+    organization: "Prinston Smart Engineers",
     area: "Data science internship",
     location: "India",
     period: "July 2024 — July 2025",
     roles: [{ title: "Data Science Intern", period: "July 2024 — July 2025" }],
     description:
-      "Developed practical familiarity with data science workflows, analytical problem solving and foundational machine-learning concepts.",
+      "Built practical familiarity with data science workflows and analytical problem-solving through Python programming, structured datasets and foundational machine-learning concepts.",
     responsibilities: [
-      "Python, Pandas and NumPy",
-      "Data preprocessing and analysis",
-      "Data visualisation",
-      "Machine-learning fundamentals",
+      "Python programming and data manipulation with Pandas and NumPy",
+      "Data preprocessing and exploratory data analysis",
+      "Data visualisation and work with structured datasets",
+      "Machine-learning fundamentals and analytical problem-solving",
     ],
     skills: ["Python", "Data analysis", "Preprocessing", "Visualisation"],
     note: "No unverified project outcomes or performance claims are included.",
@@ -91,7 +111,7 @@ export const education = [
   {
     qualification: "MSc Data Science",
     institution: "University of East London",
-    period: "September 2025 intake · graduated 2026",
+    period: "September 2025 — September 2026",
     result: "Distinction",
     dissertation:
       "The Use of Machine Learning Techniques in Optimizing Food Manufacturing Operations to Meet Demands",
@@ -104,47 +124,48 @@ export const education = [
       "Operational decision-making",
     ],
     methods: [
-      "Data preprocessing and feature engineering",
+      "Data preprocessing and exploratory data analysis",
+      "Feature engineering",
       "Time-series validation",
       "Hyperparameter tuning",
-      "Model evaluation and forecasting analysis",
+      "Model evaluation and comparative performance analysis",
     ],
     models: ["Random Forest", "XGBoost", "LightGBM"],
     dataset: "Corporación Favorita Grocery Sales Forecasting",
   },
   {
     qualification: "Bachelor of Computer Applications (BCA)",
-    institution: "University in India",
-    period: "Details to be added",
+    institution: "Global Institute of Management Sciences",
+    period: "August 2022 — August 2025",
     result: "Academic results not supplied",
   },
 ] as const;
 
 export const skillGroups = [
   {
-    title: "Data analytics",
+    title: "Programming & data analysis",
     status: "Project experience",
-    skills: ["Python", "SQL", "Excel", "Pandas", "NumPy", "Data cleaning", "EDA", "Visualisation"],
+    skills: ["Python", "SQL", "Pandas", "NumPy", "Data cleaning", "Exploratory data analysis", "Data preprocessing"],
   },
   {
-    title: "Business intelligence",
+    title: "Visualisation & business intelligence",
     status: "Working knowledge",
-    skills: ["Power BI", "Tableau", "Reporting", "Dashboards", "Business metrics", "KPI analysis"],
+    skills: ["Microsoft Excel", "Power BI", "Tableau", "Matplotlib", "Reporting", "Dashboard development", "Data visualisation"],
   },
   {
     title: "Machine learning",
     status: "Project experience",
-    skills: ["Scikit-learn", "Random Forest", "XGBoost", "LightGBM", "Regression", "Forecasting", "Evaluation"],
+    skills: ["Machine-learning fundamentals", "Scikit-learn", "Random Forest", "XGBoost", "LightGBM", "Predictive analytics", "Forecasting", "Time-series validation", "Model evaluation"],
   },
   {
-    title: "Development",
+    title: "Databases & development",
     status: "Currently developing",
-    skills: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Git", "GitHub", "Vercel"],
+    skills: ["MySQL", "SQLite", "HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Git", "GitHub", "Vercel", "Visual Studio Code", "Website development", "AI-assisted development"],
   },
   {
-    title: "Business & operations",
+    title: "Operations & business",
     status: "Practical experience",
-    skills: ["Inventory", "Production operations", "Process improvement", "Supply chain", "Operational reporting", "Problem solving"],
+    skills: ["Operational reporting", "Inventory reconciliation", "Supply chain operations", "Continuous improvement", "Process analysis", "Variance analysis", "Performance monitoring", "Data accuracy", "Stakeholder communication"],
   },
 ];
 
@@ -155,7 +176,7 @@ export const projects = [
     type: "MSc dissertation",
     status: "Research project",
     description:
-      "Researching how machine-learning techniques can support demand forecasting and operational decisions in food manufacturing.",
+      "A master's dissertation exploring how machine-learning techniques can support demand forecasting and data-informed decision-making in food manufacturing.",
     dataset: "Corporación Favorita Grocery Sales Forecasting",
     tools: ["Random Forest", "XGBoost", "LightGBM"],
     href: "/projects#forecasting",
@@ -225,12 +246,12 @@ export const webProjects = [
 export const karate = {
   style: "Shito-Ryu Karate",
   rank: "2nd Dan Black Belt",
-  years: "7+ years",
+  years: "15+ years",
   medals: { state: 13, national: 7, international: 5 },
   recordYears: [2021, 2024],
   quote: "Discipline built my foundation. Data gives me the tools to create impact.",
   credentials: [
-    "Coach Clean",
+    "Coach Clean Certification — 26 November 2025",
     "Child Protection / Safeguarding Training",
     "First Aid Level 3",
     "Martial Arts First Aid",
@@ -240,22 +261,24 @@ export const karate = {
 };
 
 export const timeline = [
-  { title: "Karate training journey", period: "Year to be added", type: "Discipline" },
+  { title: "Shito-Ryu karate journey", period: "15+ years", type: "Discipline" },
   { title: "State, national & international competition", period: "Years to be added", type: "Sport" },
   { title: "World Book Record recognition", period: "2021", type: "Recognition" },
   { title: "World Book Record recognition", period: "2024", type: "Recognition" },
   { title: "Data Science internship", period: "July 2024 — July 2025", type: "Experience" },
-  { title: "MSc Data Science", period: "2025 — 2026", type: "Education" },
+  { title: "Bachelor of Computer Applications", period: "August 2022 — August 2025", type: "Education" },
+  { title: "MSc Data Science", period: "September 2025 — September 2026", type: "Education" },
   { title: "Frive", period: "December 2025 — Present", type: "Experience" },
+  { title: "Performance & Data Analyst · Allied Karate Club London", period: "October 2026 — Present", type: "Experience" },
   { title: "MSc Distinction", period: "2026", type: "Academic" },
   { title: "Digital projects & continuous development", period: "Ongoing", type: "Building" },
 ];
 
 export const training = [
   { title: "Python Full Stack Course", provider: "Python Sphere", status: "Completion status not supplied" },
-  { title: "Data Science Internship / Training", provider: "Princeton Smart Engineers", status: "Experience listed separately" },
+  { title: "Data Science Internship / Training", provider: "Prinston Smart Engineers", status: "Experience listed separately" },
   { title: "Anthropic AI Course", provider: "Anthropic", status: "Completion status not supplied" },
-  { title: "Coach Clean", provider: "Training credential", status: "Verification details to be added" },
+  { title: "Coach Clean Certification", provider: "Training credential", status: "26 November 2025" },
   { title: "Child Protection Training", provider: "Safeguarding", status: "Verification details to be added" },
   { title: "First Aid Level 3 & Martial Arts First Aid", provider: "First aid training", status: "Verification details to be added" },
 ];

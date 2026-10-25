@@ -19,26 +19,30 @@ export const metadata: Metadata = {
   metadataBase: siteUrl,
   alternates: { canonical: "/" },
   title: {
-    default: "Satish Kumar N | Data, Discipline & Innovation",
-    template: "%s | Satish Kumar N",
+    default: "Satish Kumar Nagaraj | Data Science, Analytics & Karate",
+    template: "%s | Satish Kumar Nagaraj",
   },
   description:
-    "The portfolio of Satish Kumar N, a London-based data science graduate, operations professional, Shito-Ryu karate athlete and web developer.",
+    "Explore the portfolio of Satish Kumar Nagaraj, an MSc Data Science graduate with Distinction, operations and performance analytics professional, and internationally recognised karate athlete.",
   keywords: [
-    "Satish Kumar N",
-    "Satish Kumar Data Science",
-    "Satish Kumar London",
-    "Satish Kumar Karate",
-    "Satish Kumar Web Developer",
-    "Satish Kumar Data Analyst",
+    "Satish Kumar Nagaraj",
+    "Satish Kumar Nagaraj Data Science",
+    "Data Analytics London",
+    "Operations Analytics",
+    "Sports Performance Analytics",
+    "Shito-Ryu Karate",
   ],
   openGraph: {
-    title: "Satish Kumar N | Data, Discipline & Innovation",
-    description: "A portfolio spanning data science, operations, karate and digital work.",
+    title: "Satish Kumar Nagaraj | Data Science, Analytics & Karate",
+    description: "MSc Data Science with Distinction, operations and performance analytics, and a 15+ year Shito-Ryu karate journey.",
     type: "website",
     locale: "en_GB",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Satish Kumar Nagaraj | Data Science, Analytics & Karate",
+    description: "Data science, operations and performance analytics — grounded in discipline.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

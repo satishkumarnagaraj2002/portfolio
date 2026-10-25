@@ -5,7 +5,7 @@ import { projects, webProjects } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Data science research, development concepts, and digital projects by Satish Kumar N.",
+  description: "Data science research, operational analytics concepts, and digital projects by Satish Kumar Nagaraj.",
   alternates: { canonical: "/projects" },
 };
 
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
           <div className="case-grid">
             <article><h3>Problem statement</h3><p>Explore whether machine-learning methods can support demand forecasting and operational decisions in food manufacturing.</p></article>
             <article><h3>Dataset</h3><p>{projects[0]!.dataset}. A public grocery-sales forecasting dataset used for academic research.</p></article>
-            <article><h3>Methods</h3><p>Data preparation, feature engineering, time-series validation, hyperparameter tuning and model evaluation.</p></article>
+            <article><h3>Methods</h3><p>Data preprocessing, exploratory analysis, feature engineering, time-series validation, hyperparameter tuning and comparative evaluation of Random Forest, XGBoost and LightGBM.</p></article>
             <article><h3>Models explored</h3><p>{projects[0]!.tools.join(" · ")}</p></article>
             <article><h3>Evaluation & findings</h3><p>Dissertation score: 78 / 100. Detailed performance metrics and comparative findings are not published here until the underlying results are supplied.</p></article>
             <article><h3>Limitations & relevance</h3><p>Forecast quality depends on data coverage, validation choices and the assumptions behind the target. The research considers how forecasts could inform operational planning; no business outcome is claimed.</p></article>

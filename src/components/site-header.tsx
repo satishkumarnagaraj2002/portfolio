@@ -7,6 +7,8 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 const navigation = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
+  { label: "Education", href: "/#education" },
+  { label: "Skills", href: "/#skills" },
   { label: "Projects", href: "/projects" },
   { label: "Karate", href: "/karate" },
 ];
@@ -17,8 +19,8 @@ export function SiteHeader() {
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="site-header">
-        <Link href="/" className="brand-mark" aria-label="Satish Kumar N home" onClick={() => setMenuOpen(false)}>
-          <span className="brand-monogram">SN</span><span className="brand-name">SATISH KUMAR <i>N</i></span>
+        <Link href="/" className="brand-mark" aria-label="Satish Kumar Nagaraj home" onClick={() => setMenuOpen(false)}>
+          <span className="brand-monogram">SN</span><span className="brand-name">SATISH KUMAR <i>NAGARAJ</i></span>
         </Link>
         <nav className={`primary-nav${menuOpen ? " is-open" : ""}`} aria-label="Main navigation">
           {navigation.map((item) => <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</Link>)}

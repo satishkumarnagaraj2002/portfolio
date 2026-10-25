@@ -5,7 +5,7 @@ import { karate, medalTotal, timeline } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Karate Journey",
-  description: "Satish Kumar N's Shito-Ryu karate journey, competition medals, coaching and recognition.",
+  description: "Satish Kumar Nagaraj's Shito-Ryu karate journey, competition medals, coaching and recognition.",
   alternates: { canonical: "/karate" },
 };
 
@@ -16,8 +16,8 @@ export default function KaratePage() {
         <Link className="back-link" href="/#karate"><ArrowLeft size={15} /> Back to portfolio</Link>
         <header className="detail-hero karate-detail-hero">
           <p className="eyebrow"><span>SHITO-RYU KARATE</span> TRAINING · COMPETITION · TEACHING</p>
-          <h1>Discipline is<br /><em>my foundation.</em></h1>
-          <p>From the dojo to the world stage. A journey built through practice, competition and supporting the next generation of students.</p>
+          <h1>Beyond data:<br /><em>my journey in karate.</em></h1>
+          <p>More than 15 years in Shito-Ryu karate, shaped by competition, coaching and long-term commitment to athlete development.</p>
         </header>
         <div className="karate-stat-strip">
           <div><span>STYLE</span><strong>{karate.style}</strong></div>
@@ -34,7 +34,7 @@ export default function KaratePage() {
         <section className="detail-section">
           <p className="eyebrow"><span>02</span> BLACK BELT JOURNEY</p>
           <h2>Progress through practice.</h2>
-          <p className="case-lede">Shito-Ryu karate has been a long-running part of my life. The dates and grading milestones of the journey can be added when confirmed.</p>
+          <p className="case-lede">Shito-Ryu karate has been part of my life for more than 15 years. Specific grading dates and milestones are not included unless confirmed.</p>
           <div className="dojo-placeholder"><div className="dojo-emblem">心</div><p>Training, competition and coaching photographs to be added</p></div>
         </section>
         <section className="detail-section">
