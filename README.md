@@ -51,3 +51,4 @@ Edit `src/data/portfolio.ts` for the profile, experience, education, skills, ana
 - `/contact` — server-validated contact form
 - `/sitemap.xml` and `/robots.txt` — generated SEO endpoints
 # satish-kumar-nagaraj-portfolio
+# Portfolio
