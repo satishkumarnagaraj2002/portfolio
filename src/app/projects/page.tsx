@@ -35,6 +35,7 @@ export default function ProjectsPage() {
             <article><h3>Limitations & relevance</h3><p>Forecast quality depends on data coverage, validation choices and the assumptions behind the target. The research considers how forecasts could inform operational planning; no business outcome is claimed.</p></article>
           </div>
           <div className="case-note"><CircleHelp size={17} /><p>Dissertation title: <strong>The Use of Machine Learning Techniques in Optimizing Food Manufacturing Operations to Meet Demands.</strong></p></div>
+          <div className="case-actions"><a className="button button-outline" href={projects[0]!.github ?? "#"} target="_blank" rel="noreferrer">Open GitHub repository <ArrowUpRight size={15} /></a></div>
         </div>
       </section>
 
@@ -67,7 +68,7 @@ export default function ProjectsPage() {
 
       <section className="web-projects-detail">
         <div className="case-index"><span>04 / Web development</span><span>Selected digital work</span></div>
-        <div className="case-content"><h2>Digital experiences</h2><div className="detail-web-grid">{webProjects.map((project) => <article className="detail-web-item" key={project.title}><p className="eyebrow">{project.category}</p><h3>{project.title}</h3><p>{project.description}</p><span className="status-line"><i />{project.status}</span><a href={project.href} target="_blank" rel="noreferrer">Open supplied website <ArrowUpRight size={14} /></a></article>)}</div><p className="muted">Technology details and GitHub repositories are omitted until confirmed.</p></div>
+        <div className="case-content"><h2>Digital experiences</h2><div className="detail-web-grid">{webProjects.map((project) => <article className="detail-web-item" key={project.title}><p className="eyebrow">{project.category}</p><h3>{project.title}</h3><p>{project.description}</p><span className="status-line"><i />{project.status}</span><div className="project-action-row"><a href={project.href} target="_blank" rel="noreferrer" className="button button-outline">Open website <ArrowUpRight size={14} /></a>{project.github && <a href={project.github} target="_blank" rel="noreferrer" className="button button-lime">GitHub repo <ArrowUpRight size={14} /></a>}</div></article>)}</div><p className="muted">Project links are included for the supplied website and GitHub repository where available.</p></div>
       </section>
     </main>
   );
