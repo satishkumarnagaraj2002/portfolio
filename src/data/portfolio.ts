@@ -5,8 +5,8 @@ export const profile = {
   summary:
     "I’m an MSc Data Science graduate with Distinction, building experience across food manufacturing operations, continuous improvement support and sports performance analytics. A Shito-Ryu second dan with more than 15 years in karate, I bring analytical thinking and long-term discipline to practical challenges.",
   email: "satishkumarnagaraj2002@gmail.com",
-  linkedIn: null as string | null,
-  github: null as string | null,
+  linkedIn: "https://www.linkedin.com/in/satish-kumar-nagaraj-a24893279",
+  github: "https://github.com/satishkumarnagaraj2002",
   cvPath: null as string | null,
 };
 
