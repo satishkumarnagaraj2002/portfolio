@@ -55,7 +55,7 @@ export const experience = [
     note: "Continuous improvement and analytical work are described as support and exposure; no formal analyst appointment or measured business outcome is claimed.",
   },
   {
-    organization: "Allied Karate Club London",
+    organization: "Elite Karate Club London",
     area: "Sports performance analytics",
     location: "London, United Kingdom",
     period: "October 2026 — Present",
@@ -330,7 +330,7 @@ export const timeline = [
   { title: "Bachelor of Computer Applications", period: "August 2022 — August 2025", type: "Education" },
   { title: "MSc Data Science", period: "September 2025 — September 2026", type: "Education" },
   { title: "Frive", period: "December 2025 — Present", type: "Experience" },
-  { title: "Performance & Data Analyst · Allied Karate Club London", period: "October 2026 — Present", type: "Experience" },
+  { title: "Performance & Data Analyst · Elite Karate Club London", period: "October 2026 — Present", type: "Experience" },
   { title: "MSc Distinction", period: "2026", type: "Academic" },
   { title: "Digital projects & continuous development", period: "Ongoing", type: "Building" },
 ];
