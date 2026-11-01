@@ -1163,6 +1163,262 @@ li {
   font-weight: 700;
 }
 
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 26px;
+}
+
+.figure-card,
+.metric-summary-card,
+.metric-bars-card,
+.predicted-figure-card,
+.feature-panel,
+.analysis-block,
+.callout-box {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(2, 43, 48, 0.9);
+}
+
+.figure-card {
+  overflow: hidden;
+}
+
+.figure-frame {
+  border-bottom: 1px solid var(--border);
+  background: rgba(6, 60, 68, 0.9);
+}
+
+.figure-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figure-card figcaption {
+  display: grid;
+  gap: 8px;
+  padding: 18px 18px 20px;
+}
+
+.figure-card figcaption strong {
+  color: var(--text);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.figure-card figcaption p,
+.figure-card figcaption span,
+.analysis-block p,
+.analysis-block li,
+.feature-panel p,
+.predicted-figure-card p,
+.metric-summary-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.figure-card figcaption span {
+  color: var(--amber);
+}
+
+.section-subhead {
+  margin: 28px 0 18px;
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.model-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.metric-summary-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px 18px 16px;
+}
+
+.metric-summary-card span,
+.metric-summary-card small {
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-summary-card strong {
+  color: var(--text);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  letter-spacing: -0.05em;
+}
+
+.metric-summary-card small {
+  color: var(--amber);
+}
+
+.comparison-table-wrap {
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.model-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(2, 43, 48, 0.93);
+}
+
+.model-table th,
+.model-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  color: var(--text);
+}
+
+.model-table th {
+  background: rgba(10, 147, 150, 0.12);
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.model-table td {
+  font-size: 0.95rem;
+}
+
+.metric-bars-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.metric-bars-card {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.metric-bars-card h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.metric-bar-item {
+  display: grid;
+  gap: 8px;
+}
+
+.metric-bar-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.metric-bar-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(148, 210, 189, 0.12);
+  overflow: hidden;
+}
+
+.metric-bar-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue), var(--amber));
+}
+
+.callout-box {
+  margin-top: 24px;
+  padding: 18px 20px;
+}
+
+.callout-box p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.actual-vs-predicted-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.predicted-figure-card {
+  overflow: hidden;
+}
+
+.predicted-figure-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.predicted-figure-card p {
+  padding: 12px 14px 16px;
+  color: var(--muted);
+}
+
+.analysis-block {
+  margin-top: 24px;
+  padding: 18px 20px;
+}
+
+.analysis-block h3 {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.analysis-block ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.feature-panel {
+  margin-top: 24px;
+  padding: 18px 20px;
+}
+
+.feature-panel h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.feature-image-wrap {
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.feature-image-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .karate-detail-hero,
 .detail-section {
   margin-top: 20px;
@@ -1459,7 +1715,11 @@ blockquote {
   .skill-grid,
   .achievement-grid,
   .web-grid,
-  .cta-panel {
+  .cta-panel,
+  .figure-grid,
+  .model-summary-grid,
+  .metric-bars-wrap,
+  .actual-vs-predicted-grid {
     grid-template-columns: 1fr;
   }
 
