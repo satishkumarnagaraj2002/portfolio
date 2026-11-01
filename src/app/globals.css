@@ -1509,16 +1509,59 @@ blockquote {
     display: inline-flex;
   }
 
+  .section-wrap {
+    width: min(100% - 18px, 1180px);
+  }
+
+  .page-shell {
+    padding-top: 72px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 14px;
+    padding-bottom: 12px;
+  }
+
+  .hero-copy {
+    padding-right: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.65rem, 13vw, 4rem);
+    line-height: 0.96;
+  }
+
+  .hero-intro p {
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .hero-panel {
+    padding: 18px 18px 22px;
+  }
+
+  .identity-visual {
+    width: 100%;
+    min-height: 220px;
+  }
+
   .stats-strip,
   .skill-grid,
   .achievement-grid,
   .web-grid,
-  .projects-grid {
+  .projects-grid,
+  .proof-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    font-size: clamp(3rem, 14vw, 4.4rem);
   }
 
   .section-heading {
@@ -1530,5 +1573,15 @@ blockquote {
   .web-meta {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .cta-panel {
+    display: grid;
+    gap: 18px;
+    padding: 22px 18px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
   }
 }
