@@ -1,28 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, CircleHelp, LockKeyhole } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ChartNoAxesCombined, CircleHelp, LockKeyhole } from "lucide-react";
 import { projects, webProjects } from "@/data/portfolio";
-
-const dissertationMetrics = [
-  { model: "Random Forest", mae: 4.289, rmse: 28.684, r2: 0.11 },
-  { model: "XGBoost", mae: 3.796, rmse: 28.34, r2: 0.1312 },
-  { model: "LightGBM", mae: 3.9644, rmse: 28.4217, r2: 0.1262 },
-] as const;
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Data science research, operational analytics concepts, and digital projects by Satish Kumar Nagaraj.",
+  description: "Data science research, development concepts, and digital projects by Satish Kumar Nagaraj.",
   alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {
   return (
     <main className="detail-page section-wrap" id="main-content">
-      <Link className="back-link" href="/#projects"><ArrowLeft size={15} /> Back to portfolio</Link>
+      <Link className="back-link" href="/"><ArrowLeft size={15} /> Back to portfolio</Link>
+
       <header className="detail-hero">
-        <p className="eyebrow"><span>SELECTED WORK / 2024—2026</span> RESEARCH · CONCEPTS · WEB</p>
+        <p className="eyebrow"><span>SELECTED WORK / 2024–2026</span> RESEARCH · CONCEPTS · WEB</p>
         <h1>Projects with<br /><em>purpose.</em></h1>
-        <p>Evidence-led work, clearly scoped. Research findings and unfinished concepts are not dressed up as completed products.</p>
+        <p>Analytical work with a clear business lens: forecasting, practical reporting, digital product work and concept exploration.</p>
       </header>
 
       <section className="case-study" id="forecasting">
@@ -31,73 +26,140 @@ export default function ProjectsPage() {
           <p className="eyebrow">DEMAND FORECASTING / FOOD MANUFACTURING</p>
           <h2>{projects[0]!.title}</h2>
           <p className="case-lede">{projects[0]!.description}</p>
-          <div className="case-visual" role="img" aria-label="Verified model performance comparison for Random Forest, XGBoost and LightGBM demand forecasting" style={{ display: "block", padding: 18 }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 12 }}>
-              {dissertationMetrics.map((metric) => (
-                <article key={metric.model} style={{ display: "grid", gap: 6, padding: "14px 12px", border: metric.model === "XGBoost" ? "1px solid rgba(199, 243, 107, .7)" : "1px solid rgba(199, 243, 107, .24)", background: metric.model === "XGBoost" ? "rgba(199, 243, 107, .08)" : "rgba(11, 14, 12, .7)", textAlign: "left" }}>
-                  <span style={{ color: "#8ea08c", fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase" }}>{metric.model}</span>
-                  <strong style={{ color: "#f4f7f1", fontSize: 33, fontWeight: 500, lineHeight: 1 }}>{metric.mae.toFixed(4)}</strong>
-                  <small style={{ color: "#c7f36b", fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase" }}>MAE</small>
-                  <span style={{ color: "#c1c9bc", fontSize: 10 }}>RMSE {metric.rmse.toFixed(4)}</span>
-                  <span style={{ color: "#c1c9bc", fontSize: 10 }}>R² {metric.r2.toFixed(4)}</span>
-                </article>
-              ))}
-            </div>
-            <div style={{ marginTop: 14, color: "#c1c9bc", fontSize: 10 }}>Best overall: XGBoost (MAE 3.7960, RMSE 28.3397, R² 0.1312). LightGBM achieved the lowest MAPE at 0.8277.</div>
-          </div>
-          <div className="dissertation-figure-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 16, marginTop: 20 }}>
-            <figure style={{ margin: 0, padding: 0, border: "1px solid var(--line)", background: "#111712" }}>
-              <img src="/dissertation/average-demand-by-day-of-week.png" alt="Average demand by day of week chart from the dissertation" style={{ display: "block", width: "100%", height: "auto", background: "#f2f2f2" }} />
-              <figcaption style={{ padding: "10px 12px", color: "#aeb5aa", fontSize: 10, letterSpacing: ".06em", textTransform: "uppercase" }}>Figure extracted: average demand by day of week</figcaption>
-            </figure>
-            <figure style={{ margin: 0, padding: 0, border: "1px solid var(--line)", background: "#111712" }}>
-              <img src="/dissertation/correlation-heatmap.png" alt="Correlation heatmap from the dissertation" style={{ display: "block", width: "100%", height: "auto", background: "#f2f2f2" }} />
-              <figcaption style={{ padding: "10px 12px", color: "#aeb5aa", fontSize: 10, letterSpacing: ".06em", textTransform: "uppercase" }}>Figure extracted: correlation heatmap</figcaption>
-            </figure>
-          </div>
-          <div className="case-grid">
-            <article><h3>Problem statement</h3><p>Evaluate whether tree-based machine-learning models can provide useful demand signals for food manufacturing planning without claiming direct production optimisation.</p></article>
-            <article><h3>Dataset</h3><p>{projects[0]!.dataset} using the Corporación Favorita grocery sales dataset and a leakage-aware chronological split.</p></article>
-            <article><h3>Methods</h3><p>CRISP-DM workflow, widespread exploratory analysis, feature engineering using lags and rolling statistics, hyperparameter tuning and time-series validation.</p></article>
-            <article><h3>Models explored</h3><p>{projects[0]!.tools.join(" · ")}</p></article>
-            <article><h3>Evaluation & findings</h3><p>XGBoost performed best overall with MAE 3.7960, RMSE 28.3397 and R² 0.1312. LightGBM had the lowest MAPE at 0.8277, while the low R² values showed a substantial share of demand variability remained unexplained.</p></article>
-            <article><h3>Limitations & relevance</h3><p>Retail sales were used as a proxy for downstream demand rather than direct manufacturing data; forecasts are best treated as planning support rather than commercial deployment.</p></article>
-          </div>
-          <div className="case-note"><CircleHelp size={17} /><p>Dissertation title: <strong>The Use of Machine Learning Techniques in Optimizing Food Manufacturing Operations to Meet Demands.</strong></p></div>
-          <div className="case-actions"><a className="button button-outline" href={projects[0]!.github ?? "#"} target="_blank" rel="noreferrer">Open GitHub repository <ArrowUpRight size={15} /></a></div>
-        </div>
-      </section>
 
-      <section className="case-study" id="portion-analysis">
-        <div className="case-index"><span>02 / Proposed exercise</span><span>In development</span></div>
-        <div className="case-content">
-          <p className="eyebrow">CONTINUOUS IMPROVEMENT / PRIVATE UNTIL APPROVED</p>
-          <h2>{projects[1]!.title}</h2>
-          <p className="case-lede">{projects[1]!.description}</p>
-          <div className="privacy-banner"><LockKeyhole size={18} /><div><strong>Not yet completed. No employer data is included.</strong><p>Any future public case study requires approval and must use non-confidential information.</p></div></div>
+          <div className="case-visual" aria-label="Dissertation model comparison summary">
+            <ChartNoAxesCombined size={24} />
+            <div className="chart-bars">
+              <span style={{ height: "48%" }} />
+              <span style={{ height: "72%" }} />
+              <span style={{ height: "66%" }} />
+            </div>
+            <strong>XGBoost strongest overall performance</strong>
+          </div>
+
           <div className="case-grid">
-            <article><h3>Potential questions</h3><p>Target versus actual weight, average variance, giveaway percentage, out-of-tolerance readings and production consistency.</p></article>
-            <article><h3>Possible approach</h3><p>Summarise distributions, compare components where permitted, document assumptions and identify questions for process owners.</p></article>
-            <article><h3>Status</h3><p>Proposed development exercise. No analysis, findings, savings or role appointment are claimed.</p></article>
-            <article><h3>Data handling</h3><p>Internal datasets, employee details, proprietary processes and commercially sensitive metrics will not be published.</p></article>
+            <article>
+              <h3>Research focus</h3>
+              <p>Investigated whether machine-learning methods could improve demand forecasting and support food manufacturing planning.</p>
+            </article>
+            <article>
+              <h3>Dataset</h3>
+              <p>{projects[0]!.dataset} with 300,000 observations and 37 processed features used in a chronological 80:20 split.</p>
+            </article>
+            <article>
+              <h3>Methodology</h3>
+              <p>Data loading, cleaning, exploratory analysis, temporal feature engineering, TimeSeriesSplit validation and RandomizedSearchCV tuning.</p>
+            </article>
+            <article>
+              <h3>Models explored</h3>
+              <p>{projects[0]!.tools.join(" · ")}</p>
+            </article>
+            <article>
+              <h3>Key outcomes</h3>
+              <p>XGBoost achieved the lowest MAE, MSE, RMSE and RMSLE and the highest R². LightGBM had the lowest MAPE, although results were very similar.</p>
+            </article>
+            <article>
+              <h3>Research relevance</h3>
+              <p>The project explored how forecasting can support production planning, inventory decisions and waste-related operational planning.</p>
+            </article>
+          </div>
+
+          <div className="case-note">
+            <CircleHelp size={17} />
+            <p>Dissertation title: <strong>Food Demand Forecasting Using Machine Learning.</strong></p>
           </div>
         </div>
       </section>
 
       <section className="case-study" id="club-analytics">
-        <div className="case-index"><span>03 / Personal concept</span><span>Concept only</span></div>
+        <div className="case-index"><span>02 / In development</span><span>Concept project</span></div>
         <div className="case-content">
-          <p className="eyebrow">SPORTS ANALYTICS / KARATE</p>
+          <p className="eyebrow">SPORTS ANALYTICS / MANAGEMENT REPORTING</p>
+          <h2>{projects[1]!.title}</h2>
+          <p className="case-lede">{projects[1]!.description}</p>
+
+          <div className="concept-metrics">
+            <span>Attendance</span>
+            <span>Retention</span>
+            <span>Progression</span>
+            <span>Branch overview</span>
+            <span>Management dashboard</span>
+            <span>Decision support</span>
+          </div>
+
+          <div className="case-grid">
+            <article>
+              <h3>Project context</h3>
+              <p>A multi-branch karate organisation with around 150 students and a need for centralised attendance, retention, grading and operational reporting.</p>
+            </article>
+            <article>
+              <h3>Planned modules</h3>
+              <p>Attendance analytics, retention and engagement trends, performance grading, branch comparisons and management recommendations.</p>
+            </article>
+            <article>
+              <h3>Technology stack</h3>
+              <p>Excel, SQL, Power BI and Python for structured analysis and dashboard design, with anonymised demonstration records only.</p>
+            </article>
+            <article>
+              <h3>Status</h3>
+              <p>Currently in development. No completed dashboards, retention rates or club performance claims are presented as implemented results.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="case-study" id="portion-analysis">
+        <div className="case-index"><span>03 / Proposed exercise</span><span>Private until approved</span></div>
+        <div className="case-content">
+          <p className="eyebrow">CONTINUOUS IMPROVEMENT / VARIANCE ANALYSIS</p>
           <h2>{projects[2]!.title}</h2>
           <p className="case-lede">{projects[2]!.description}</p>
-          <div className="concept-metrics"><span>Attendance trends</span><span>Student progression</span><span>Grading results</span><span>Retention</span><span>Branch overview</span><span>Instructor view</span></div>
-          <p className="muted">No student records, dashboards or analysis results are represented as existing functionality.</p>
+
+          <div className="privacy-banner">
+            <LockKeyhole size={18} />
+            <div>
+              <strong>Not yet completed. No employer data is included.</strong>
+              <p>Any public case study would require approval and non-confidential data only.</p>
+            </div>
+          </div>
+
+          <div className="case-grid">
+            <article>
+              <h3>Possible questions</h3>
+              <p>Target versus actual weight, average variance, giveaway percentage, out-of-tolerance readings and process consistency.</p>
+            </article>
+            <article>
+              <h3>Possible approach</h3>
+              <p>Distribution analysis, control checks, variance review and operational recommendations where approved data is available.</p>
+            </article>
+            <article>
+              <h3>Data handling</h3>
+              <p>Internal operational datasets and commercially sensitive metrics are not published without relevant approval.</p>
+            </article>
+            <article>
+              <h3>Status</h3>
+              <p>Proposed development activity only. No completed savings, analysis or formal role claim is presented.</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <section className="web-projects-detail">
-        <div className="case-index"><span>04 / Web development</span><span>Selected digital work</span></div>
-        <div className="case-content"><h2>Digital experiences</h2><div className="detail-web-grid">{webProjects.map((project) => <article className="detail-web-item" key={project.title}><p className="eyebrow">{project.category}</p><h3>{project.title}</h3><p>{project.description}</p><span className="status-line"><i />{project.status}</span><div className="project-action-row"><a href={project.href} target="_blank" rel="noreferrer" className="button button-outline">Open website <ArrowUpRight size={14} /></a>{project.github && <a href={project.github} target="_blank" rel="noreferrer" className="button button-lime">GitHub repo <ArrowUpRight size={14} /></a>}</div></article>)}</div><p className="muted">Project links are included for the supplied website and GitHub repository where available.</p></div>
+        <div className="case-index"><span>04 / Web development</span><span>Selected work</span></div>
+        <div className="case-content">
+          <h2>Digital experiences</h2>
+          <div className="detail-web-grid">
+            {webProjects.map((project) => (
+              <article className="detail-web-item" key={project.title}>
+                <p className="eyebrow light"><span>{project.category}</span></p>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <span className="status-line"><i />{project.status}</span>
+                <a href={project.href} target="_blank" rel="noreferrer">Open supplied website <ArrowUpRight size={14} /></a>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
     </main>
   );

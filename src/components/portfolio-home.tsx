@@ -1,103 +1,348 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useInView, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Activity, Code2, Database, ExternalLink, GraduationCap, MapPin, Medal, Sparkles, Trophy } from "lucide-react";
-import { education, experience, karate, medalTotal, profile, projects, roles, skillGroups, timeline, training, webProjects } from "@/data/portfolio";
+import { useMemo } from "react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, BriefcaseBusiness, Building2, Database, GraduationCap, MapPin, Target, TrendingUp } from "lucide-react";
+import { experience, karate, medalTotal, profile, projects, roles, skillGroups, webProjects } from "@/data/portfolio";
 
-function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const reducedMotion = useReducedMotion();
-  return <motion.div className={className} initial={reducedMotion ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: 0.65, delay, ease: "easeOut" }}>{children}</motion.div>;
-}
-
-function AnimatedCount({ value }: { value: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const reducedMotion = useReducedMotion();
-  const progress = useMotionValue(0);
-  const spring = useSpring(progress, { damping: 25, stiffness: 80 });
-  const display = useTransform(spring, (latest) => Math.round(latest).toString());
-
-  useEffect(() => {
-    if (isInView) progress.set(value);
-  }, [isInView, progress, value]);
-
-  return <motion.span ref={ref} aria-label={value.toString()}>{reducedMotion ? value : display}</motion.span>;
-}
-
-function SectionHeading({ index, eyebrow, title, intro }: { index: string; eyebrow: string; title: string; intro?: string }) {
-  return <div className="section-heading"><p className="eyebrow"><span>{index}</span>{eyebrow}</p><div className="heading-copy"><h2>{title}</h2>{intro && <p className="section-intro">{intro}</p>}</div></div>;
-}
-
-const achievements = [
-  { category: "Academic", title: "MSc Data Science", detail: "Distinction · University of East London", mark: "2026" },
-  { category: "Academic", title: "Dissertation", detail: "78 / 100 · machine learning & food manufacturing", mark: "78" },
-  { category: "Sport", title: "2nd Dan Black Belt", detail: "Shito-Ryu Karate", mark: "2ND" },
-  { category: "Sport", title: "Competition medals", detail: "13 state · 7 national · 5 international", mark: "25" },
-  { category: "Recognition", title: "World Book Record recognition", detail: "Record details and verification to be added", mark: "2021" },
-  { category: "Recognition", title: "World Book Record recognition", detail: "Record details and verification to be added", mark: "2024" },
-  { category: "Professional", title: "Data Science Internship", detail: "Prinston Smart Engineers · July 2024 — July 2025", mark: "01" },
-  { category: "Professional", title: "Web development projects", detail: "Digital experiences for business and community organisations", mark: "WEB" },
-  { category: "Coaching", title: "Assistant Karate Instructor", detail: "Supporting training and student progression", mark: "DOJO" },
+const featureStats = [
+  { label: "MSc Data Science", value: "Distinction", icon: GraduationCap },
+  { label: "Food demand forecasting", value: "78/100", icon: TrendingUp },
+  { label: "Karate medals", value: "25 total", icon: Target },
+  { label: "Operational experience", value: "UK + India", icon: Building2 },
 ];
-const filters = ["All", "Academic", "Sport", "Recognition", "Professional", "Coaching"];
+
+const hireReasons = [
+  {
+    title: "Business-focused analysis",
+    copy: "I translate raw data into decisions, not just charts — with emphasis on operational relevance and business understanding.",
+  },
+  {
+    title: "Operations awareness",
+    copy: "My manufacturing work taught me how process variability, stock accuracy and reporting quality affect real-world performance.",
+  },
+  {
+    title: "Analytical toolkit",
+    copy: "Excel, SQL, Power BI, Python and forecasting methods are used to support insight, reporting and decision support.",
+  },
+];
 
 export function PortfolioHome() {
-  const [activeFilter, setActiveFilter] = useState("All");
-  const visibleAchievements = activeFilter === "All" ? achievements : achievements.filter((item) => item.category === activeFilter);
+  const introduction = useMemo(
+    () => "I’m an MSc Data Science graduate with Distinction, interested in using data analytics, machine learning and business intelligence to solve practical business problems.",
+    [],
+  );
+
   return (
-    <main id="main-content">
+    <main id="main-content" className="page-shell">
       <section className="hero section-wrap" id="top" aria-labelledby="hero-title">
-        <div className="hero-gridline" aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow hero-eyebrow"><span>PORTFOLIO / 2026</span> ANALYTICS · OPERATIONS · KARATE</p>
-          <h1 id="hero-title" aria-label={profile.name}>SATISH<br /><span>KUMAR<br /><em>NAGARAJ</em></span></h1>
-          <div className="hero-bottom"><p className="hero-manifesto">Data science.<br />Operations &amp; performance analytics.<br /><span>Shito-Ryu karate.</span></p><div className="hero-aside"><p>{profile.summary}</p><div className="location-line"><MapPin size={14} aria-hidden="true" /> {profile.location}</div><div className="hero-actions"><a className="button button-lime" href="#about">Explore my journey <ArrowDownRight size={16} /></a><a className="button button-quiet" href="#projects">View my work <ArrowUpRight size={15} /></a><Link className="button button-outline" href="/contact">Contact me <ArrowUpRight size={15} /></Link>{profile.cvPath && <a className="button button-outline" href={profile.cvPath} download>Download CV <ArrowUpRight size={15} /></a>}</div><div className="social-links"><a href={profile.linkedIn ?? "#"} target="_blank" rel="noreferrer" aria-label="LinkedIn profile">LinkedIn</a><a href={profile.github ?? "#"} target="_blank" rel="noreferrer" aria-label="GitHub profile">GitHub</a><a href={`mailto:${profile.email}`} aria-label="Email address">Email</a></div><span className="availability"><i /> Open to meaningful opportunities</span></div></div>
+          <h1 id="hero-title" aria-label={profile.name}>
+            {profile.name.split(" ").slice(0, 2).join(" ")}<br />
+            <span>{profile.name.split(" ").slice(2).join(" ")}</span>
+          </h1>
+          <p className="hero-headline">{profile.headline}</p>
+          <div className="hero-intro">
+            <p>{introduction}</p>
+            <p>
+              With experience in food manufacturing operations and continuous improvement support, I bring an understanding of operational challenges alongside technical skills in Excel, Power BI, SQL and Python.
+            </p>
+          </div>
+
+          <div className="hero-actions">
+            <a className="button button-primary" href="#projects">View my projects <ArrowDownRight size={16} /></a>
+            <Link className="button button-secondary" href="/contact">
+              Contact me <ArrowUpRight size={15} />
+            </Link>
+            {profile.github ? (
+              <a className="button button-ghost" href={profile.github} target="_blank" rel="noreferrer">
+                GitHub <ArrowUpRight size={15} />
+              </a>
+            ) : null}
+          </div>
+
+          <div className="quick-links">
+            {profile.linkedIn ? <a href={profile.linkedIn} target="_blank" rel="noreferrer">LinkedIn</a> : null}
+            {profile.github ? <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a> : null}
+            {profile.email ? <a href={`mailto:${profile.email}`}>Email</a> : null}
+            {profile.cvPath ? <a href={profile.cvPath} download>Download CV</a> : null}
+          </div>
+
+          <div className="location-line">
+            <MapPin size={15} /> {profile.location}
+          </div>
         </div>
-        <div className="hero-art" aria-label="Portrait placeholder"><div className="hero-art-top"><span>FIG. 01</span><span>IDENTITY IN MOTION</span></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="portrait-placeholder"><span className="portrait-initials">SN</span><span className="portrait-caption">PORTRAIT<br />TO BE ADDED</span></div><div className="hero-art-bottom"><span>DATA / DISCIPLINE / DESIGN</span><span>51°30&apos; N</span></div><div className="hero-art-stamp"><Sparkles size={16} /><span>THREE<br />DISCIPLINES<br />ONE DIRECTION</span></div></div>
-        <a className="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><ArrowDownRight size={15} /></a>
+
+        <div className="hero-panel" aria-label="Professional identity panel">
+          <div className="panel-header">
+            <span>Identity</span>
+          </div>
+          <div className="identity-visual" aria-label="Profile portrait">
+            <Image src="/profile-portrait.jpg" alt="Satish Kumar Nagaraj portrait" width={720} height={540} className="identity-image" />
+          </div>
+          <div className="skills-inline">
+            {roles.map((role) => (
+              <span key={role}>{role}</span>
+            ))}
+          </div>
+          <p>
+            I enjoy transforming complex data into meaningful insights that support better decisions and improve operational outcomes.
+          </p>
+          <div className="mini-proof">
+            <span>Data Analyst</span>
+            <span>Operations Analytics</span>
+            <span>BI & Reporting</span>
+          </div>
+        </div>
       </section>
-      <section className="intro-strip" aria-label="Professional identity"><div className="ticker-track">{roles.map((role) => <span key={role}><i />{role}</span>)}</div></section>
-      <section className="work-marquee" aria-label="Selected website projects">
-        {[false, true].map((reverse) => <div className={`marquee-track${reverse ? " marquee-reverse" : ""}`} key={reverse ? "reverse" : "forward"}>
-          {[...webProjects, ...webProjects].map((project, index) => <a className={`marquee-tile preview-${project.visual}`} href={project.href} target="_blank" rel="noreferrer" key={`${reverse ? "reverse-" : ""}${project.title}-${index}`}>
-            <span>{project.category}</span><strong>{project.title}</strong><small>Selected digital work</small>
-          </a>)}
-        </div>)}
+
+      <section className="stats-strip section-wrap" aria-label="Summary metrics">
+        {featureStats.map(({ label, value, icon: Icon }) => (
+          <div className="stat-tile" key={label}>
+            <Icon size={18} />
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
       </section>
 
-      <section className="section-wrap section-pad" id="about"><SectionHeading index="01" eyebrow="A little context" title="More than one discipline." intro="A journey shaped by curiosity, commitment and continuous growth." /><div className="about-layout"><Reveal className="about-lede"><p className="large-copy">I’m Satish Kumar Nagaraj. I use data to understand practical challenges and help people make better-informed decisions.</p><p>My experience connects data science, food manufacturing operations, continuous improvement support and sports performance analytics. I have seen operational work on the ground and studied how data and machine learning can help make sense of complex questions.</p><p>I completed an MSc in Data Science with Distinction at the University of East London, building on a Bachelor of Computer Applications at Global Institute of Management Sciences. Alongside my professional work, I am a Shito-Ryu second dan with more than 15 years in karate and support athlete development through analysis.</p><p>I’m interested in data analytics, business intelligence, operations and performance analytics, and continuous improvement.</p></Reveal><div className="identity-grid">{[{ no: "01", title: "THE ANALYST", text: "Finding meaning in complexity.", icon: <Database /> }, { no: "02", title: "THE ATHLETE", text: "Excellence through consistency.", icon: <Medal /> }, { no: "03", title: "THE CREATOR", text: "Making ideas useful through technology.", icon: <Code2 /> }, { no: "04", title: "THE PROFESSIONAL", text: "Turning knowledge into meaningful results.", icon: <Activity /> }].map((item) => <Reveal key={item.no} className="identity-card"><span className="card-number">{item.no}</span><span className="identity-icon">{item.icon}</span><h3>{item.title}</h3><p>{item.text}</p></Reveal>)}</div></div></section>
+      <section className="section-wrap section-pad" id="about">
+        <div className="section-heading">
+          <p className="eyebrow"><span>01</span> ABOUT</p>
+          <h2>Data-informed thinking with operational awareness.</h2>
+        </div>
 
-      <section className="discipline-band section-pad"><div className="section-wrap"><SectionHeading index="02" eyebrow="The through-line" title="One mind. Multiple disciplines." intro="Different arenas. The same instinct to learn, improve and do the work with care." /><div className="discipline-grid">{[{ no: "01", title: "DATA", copy: "Finding meaning in complexity.", detail: "ANALYSE / QUESTION / UNDERSTAND", shape: "shape-data" }, { no: "02", title: "DISCIPLINE", copy: "Excellence through consistency.", detail: "FOCUS / PRACTICE / REPEAT", shape: "shape-discipline" }, { no: "03", title: "INNOVATION", copy: "Creating solutions through technology.", detail: "IMAGINE / BUILD / REFINE", shape: "shape-innovation" }, { no: "04", title: "IMPACT", copy: "Turning knowledge into meaningful results.", detail: "CONNECT / IMPROVE / DELIVER", shape: "shape-impact" }].map((item, index) => <Reveal key={item.no} delay={index * 0.07} className={`discipline-card ${item.shape}`}><span>{item.no} / 04</span><div className="discipline-symbol" aria-hidden="true" /><h3>{item.title}</h3><p>{item.copy}</p><small>{item.detail}</small></Reveal>)}</div></div></section>
+        <div className="about-grid">
+          <div className="lead-card">
+            <p className="large-copy">I use data to understand business problems, connect patterns to decisions and produce insight that can be acted on.</p>
+            <p>
+              My experience spans data science, food manufacturing operations and continuous improvement support. I have worked with live operational data, tracked stock movements, monitored variability and used analytical thinking to interpret what matters most.
+            </p>
+            <p>
+              My MSc in Data Science at the University of East London was supported by a practical focus on forecasting, experimental comparison and business-ready analysis. I combine that with an operations mindset shaped by hands-on work in manufacturing and a disciplined performance background in karate.
+            </p>
+          </div>
 
-      <section className="section-wrap section-pad career-highlights" id="highlights"><SectionHeading index="03" eyebrow="Career highlights" title="A path shaped by learning and practice." intro="Academic achievement, hands-on operations, sports analytics and a long commitment to karate." /><div className="highlight-grid">{[{ value: "DISTINCTION", label: "MSc Data Science", detail: "University of East London" }, { value: "15+ YEARS", label: "Shito-Ryu Karate", detail: "Second Dan Black Belt" }, { value: "25 MEDALS", label: "State · National · International", detail: "13 state · 7 national · 5 international" }, { value: "2021 & 2024", label: "World Book record recognition", detail: "Recognition years; award details not supplied" }].map((item, index) => <Reveal className="highlight-card" delay={index * 0.06} key={item.label}><span>0{index + 1}</span><strong>{item.value}</strong><h3>{item.label}</h3><p>{item.detail}</p></Reveal>)}</div></section>
+          <div className="focus-cards">
+            <div className="focus-card">
+              <Database size={18} />
+              <h3>Analyst mindset</h3>
+              <p>Clean data, clear interpretation and evidence-based recommendations.</p>
+            </div>
+            <div className="focus-card">
+              <BriefcaseBusiness size={18} />
+              <h3>Operations lens</h3>
+              <p>Understanding actual process constraints and the business impact behind the numbers.</p>
+            </div>
+            <div className="focus-card">
+              <Target size={18} />
+              <h3>Decision support</h3>
+              <p>Using forecasting, KPI reporting and dashboards to support better choices.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section className="section-wrap section-pad" id="experience"><SectionHeading index="04" eyebrow="Professional experience" title="Experience that builds perspective." intro="Learning how decisions, data and day-to-day work meet on the ground." /><div className="experience-list">{experience.map((item, index) => <Reveal className="experience-row" key={item.organization}><div className="experience-marker"><span>0{index + 1}</span><i /></div><div className="experience-main"><div className="experience-top"><div><p className="eyebrow">{item.area} · {item.location}</p><h3>{item.organization}</h3></div><span className="date-label">{item.period}</span></div><p className="experience-description">{item.description}</p><div className="role-stack">{item.roles.map((role) => <div className="role-line" key={role.title}><strong>{role.title}</strong><span>{role.period}</span></div>)}</div><ul className="responsibility-list">{item.responsibilities.map((responsibility) => <li key={responsibility}>{responsibility}</li>)}</ul><div className="chip-row">{item.skills.map((skill) => <span className="skill-chip" key={skill}>{skill}</span>)}</div>{item.note && <p className="accuracy-note">{item.note}</p>}</div></Reveal>)}</div><Reveal className="development-note"><span className="note-index">EXPLORING / CONTINUOUS IMPROVEMENT</span><div><h3>Curiosity, with the right caveats.</h3><p>I have been pursuing development opportunities involving operational data, production efficiency and continuous improvement. A proposed exercise around portion-weight variance and potential giveaway is not yet completed; no savings, role appointment or company data are claimed here.</p></div><ArrowUpRight size={20} aria-hidden="true" /></Reveal></section>
+      <section className="section-wrap section-pad" id="why-me">
+        <div className="section-heading">
+          <p className="eyebrow"><span>02</span> WHY ME</p>
+          <h2>Strong analytical foundations with practical business awareness.</h2>
+        </div>
 
-      <section className="education-band section-pad" id="education"><div className="section-wrap"><SectionHeading index="05" eyebrow="Education" title="Built on knowledge. Driven by curiosity." intro="Academic foundations shaped by a practical question: how can better analysis support better decisions?" /><div className="education-grid"><Reveal className="education-card masters-card"><div className="education-card-top"><span className="eyebrow">MASTER&apos;S DEGREE</span><span className="classification">DISTINCTION</span></div><GraduationCap className="degree-icon" size={27} /><h3>{education[0].qualification}</h3><p className="institution">{education[0].institution}</p><p className="date-label">{education[0].period}</p><div className="dissertation-spotlight"><span className="score">78<span>/100</span></span><div><small>DISSERTATION SCORE</small><p>{education[0].dissertation}</p></div></div><div className="education-meta"><div><span>RESEARCH</span><p>{education[0].research.slice(0, 3).join(" · ")}</p></div><div><span>MODELS EXPLORED</span><p>{education[0].models.join(" · ")}</p></div><div><span>DATASET</span><p>{education[0].dataset}</p></div></div><Link href="/projects#forecasting" className="text-link">Explore dissertation project <ArrowUpRight size={15} /></Link></Reveal><Reveal className="education-card bachelors-card" delay={0.1}><div className="education-card-top"><span className="eyebrow">BACHELOR&apos;S DEGREE</span><span className="small-index">02</span></div><GraduationCap className="degree-icon" size={27} /><h3>{education[1].qualification}</h3><p className="institution">{education[1].institution}</p><p className="date-label">{education[1].period}</p><div className="unknown-fields"><p><span>ACADEMIC RESULTS</span><strong>Not supplied</strong></p></div><p className="muted">Academic results have not been supplied.</p></Reveal></div></div></section>
+        <div className="proof-grid">
+          {hireReasons.map((item, index) => (
+            <article className="proof-card" key={item.title}>
+              <span className="proof-index">0{index + 1}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section className="section-wrap section-pad" id="skills"><SectionHeading index="06" eyebrow="Technical skills" title="Tools, technologies & thinking." intro="A practical toolkit, described by experience rather than invented proficiency scores." /><div className="skills-grid">{skillGroups.map((group, index) => <Reveal className="skill-category" delay={index * 0.04} key={group.title}><div className="skill-category-head"><span>0{index + 1}</span><small>{group.status}</small></div><h3>{group.title}</h3><div className="chip-row">{group.skills.map((skill) => <span className="skill-chip" key={skill}>{skill}</span>)}</div></Reveal>)}</div></section>
+      <section className="section-wrap section-pad" id="projects">
+        <div className="section-heading with-link">
+          <div>
+            <p className="eyebrow"><span>03</span> ANALYTICS PROJECTS</p>
+            <h2>Featured work and research.</h2>
+          </div>
+          <Link href="/projects" className="link-inline">See case studies <ArrowUpRight size={15} /></Link>
+        </div>
 
-      <section className="project-band section-pad" id="projects"><div className="section-wrap"><SectionHeading index="07" eyebrow="Data science & analytics" title="From data to decisions." intro="A research project, a proposed operational exercise and a personal concept. Each is labelled for what it is." /><div className="analytics-grid">{projects.map((project) => <Reveal className={`analytics-card analytics-${project.accent}`} key={project.number}><div className="analytics-visual" aria-hidden="true"><span className="visual-overline">CASE FILE / {project.number}</span><div className="visual-graphic"><i /><i /><i /><i /><i /></div><span className="visual-caption">{project.status}</span></div><div className="analytics-content"><div className="card-kicker"><span>{project.type}</span><span>{project.number}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="analytics-tools">{project.tools.map((tool) => <span key={tool}>{tool}</span>)}</div><div className="project-action-row"><Link href={project.href} className="text-link">View project notes <ArrowUpRight size={15} /></Link>{project.github && <a href={project.github} target="_blank" rel="noreferrer" className="text-link">GitHub repo <ArrowUpRight size={15} /></a>}</div></div></Reveal>)}</div><div className="section-link-row"><Link className="button button-outline" href="/projects">All project case studies <ArrowRight size={16} /></Link></div></div></section>
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <article className="project-card-large" key={project.title}>
+              <div className="project-card-top">
+                <span className="project-index">{project.number}</span>
+                <span className="project-type">{project.type}</span>
+              </div>
+              <div className="project-details">
+                <p className="project-status">{project.status}</p>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+              </div>
+              <div className="project-meta-box">
+                <span>Dataset</span>
+                <strong>{project.dataset}</strong>
+              </div>
+              <div className="tool-list">
+                {project.tools.map((tool) => (
+                  <span key={tool}>{tool}</span>
+                ))}
+              </div>
+              <Link href={project.href} className="project-link">Read project <ArrowRight size={14} /></Link>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section className="section-wrap section-pad" id="web-work"><SectionHeading index="08" eyebrow="Website development" title="Digital experiences I&apos;ve created." intro="A small portfolio of live web experiences, with external status checked and shown plainly." /><div className="web-project-grid">{webProjects.map((project, index) => <Reveal className="web-project" delay={index * 0.05} key={project.title}><a className={`web-preview preview-${project.visual}`} href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} in a new tab`}><div className="preview-browser"><span /><span /><span /><small>{project.category}</small></div><div className="preview-content"><small>SELECTED WORK / 0{index + 1}</small><strong>{project.title}</strong><span>Digital experience <ArrowUpRight size={14} /></span></div><div className="preview-orbit" /></a><div className="web-project-info"><div><p>{project.category}</p><h3>{project.title}</h3></div><a href={project.href} target="_blank" rel="noreferrer" aria-label={`Visit ${project.title}`}><ExternalLink size={17} /></a></div><p className="web-project-description">{project.description}</p><div className="project-link-row"><a className="button button-outline" href={project.href} target="_blank" rel="noreferrer">Visit site <ArrowUpRight size={15} /></a>{project.github && <a className="button button-lime" href={project.github} target="_blank" rel="noreferrer">GitHub repo <ArrowUpRight size={15} /></a>}</div><span className={`status-line${project.status.startsWith("Supplied") ? " status-muted" : ""}`}><i />{project.status}</span></Reveal>)}</div><p className="tech-disclosure">Technology stacks and repository links are listed for the projects provided.</p></section>
+      <section className="section-wrap section-pad" id="experience">
+        <div className="section-heading">
+          <p className="eyebrow"><span>04</span> EXPERIENCE</p>
+          <h2>Practical experience shaped by operations and analysis.</h2>
+        </div>
 
-      <section className="karate-feature section-pad" id="karate"><div className="section-wrap karate-layout"><div className="karate-copy"><p className="eyebrow"><span>09</span> THE DOJO / THE WORLD STAGE</p><h2>Beyond data:<br /><em>my journey in karate.</em></h2><p className="karate-intro">For more than 15 years, Shito-Ryu karate has shaped how I train, compete and support other athletes. The discipline, resilience and focus I have developed in the dojo carry into my professional work.</p><div className="karate-facts"><div><span>STYLE</span><strong>{karate.style}</strong></div><div><span>RANK</span><strong>{karate.rank}</strong></div><div><span>EXPERIENCE</span><strong>{karate.years}</strong></div></div><Link className="button button-lime" href="/karate">Explore my karate journey <ArrowUpRight size={16} /></Link></div><div className="karate-art" aria-label="Abstract karate gallery placeholder"><div className="karate-art-label">ARCHIVE / TRAINING & COMPETITION</div><div className="karate-circle"><span>心</span><small>FOCUS / FORM / RESPECT</small></div><div className="karate-art-bottom"><span>SHITO-RYU</span><span>2ND DAN / LONDON</span></div><p className="media-placeholder">Genuine training photographs<br />to be added</p></div></div><div className="section-wrap medal-row">{[{ label: "State-level", count: karate.medals.state }, { label: "National-level", count: karate.medals.national }, { label: "International-level", count: karate.medals.international }, { label: "Total medals", count: medalTotal }].map((item) => <div className="medal-count" key={item.label}><Medal size={18} /><strong><AnimatedCount value={item.count} /></strong><span>{item.label}</span></div>)}</div></section>
+        <div className="experience-stack">
+          {experience.map((entry) => (
+            <article className="experience-card" key={entry.organization}>
+              <div className="experience-header">
+                <div>
+                  <p className="eyebrow light"><span>{entry.area}</span></p>
+                  <h3>{entry.organization}</h3>
+                </div>
+                <span className="period">{entry.period}</span>
+              </div>
+              <p className="experience-description">{entry.description}</p>
+              <div className="role-stack">
+                {entry.roles.map((role) => (
+                  <div key={role.title} className="role-item">
+                    <strong>{role.title}</strong>
+                    <span>{role.period}</span>
+                  </div>
+                ))}
+              </div>
+              <ul>
+                {entry.responsibilities.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="chip-row">
+                {entry.skills.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section className="section-wrap section-pad" id="recognition"><SectionHeading index="10" eyebrow="World Book Record recognition" title="Recognition beyond competition." intro="World Book record recognition was received in 2021 and 2024. Exact record titles and issuing organisations were not supplied." /><div className="recognition-grid">{karate.recordYears.map((year) => <Reveal className="recognition-card" key={year}><div className="record-seal"><Trophy size={23} /><span>RECOGNITION</span></div><div><span className="eyebrow">WORLD BOOK RECORD</span><h3>{year}</h3><p>Recognition reported for this year; specific record details are not available.</p></div></Reveal>)}</div></section>
+      <section className="section-wrap section-pad" id="skills">
+        <div className="section-heading">
+          <p className="eyebrow"><span>05</span> SKILLS</p>
+          <h2>Tools for analysis, reporting and delivery.</h2>
+        </div>
 
-      <section className="credential-band section-pad" id="credentials"><div className="section-wrap credential-layout"><div><SectionHeading index="11" eyebrow="Teaching & credentials" title="Martial arts certifications & professional credentials." intro="A long-term commitment to training, coaching and athlete development." /><blockquote>{karate.quote}</blockquote></div><div className="credential-list">{karate.credentials.map((credential, index) => <div className="credential-row" key={credential}><span>0{index + 1}</span><strong>{credential}</strong><small>{credential.startsWith("Coach Clean") ? "Date supplied" : "Credential listed; additional details not supplied"}</small></div>)}</div></div></section>
+        <div className="skill-grid">
+          {skillGroups.map((group) => (
+            <article className="skill-card" key={group.title}>
+              <div className="skill-topline">
+                <span>{group.status}</span>
+              </div>
+              <h3>{group.title}</h3>
+              <div className="chip-row">
+                {group.skills.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section className="section-wrap section-pad" id="achievements"><SectionHeading index="12" eyebrow="Milestones & awards" title="Milestones that define the journey." intro="A record of academic, sporting, professional and coaching milestones." /><div className="filter-tabs" role="group" aria-label="Filter achievements">{filters.map((filter) => <button aria-pressed={activeFilter === filter} className={activeFilter === filter ? "is-active" : ""} key={filter} onClick={() => setActiveFilter(filter)} type="button">{filter}</button>)}</div><div className="achievement-grid">{visibleAchievements.map((item) => <Reveal className="achievement-card" key={item.title + item.mark}><div className="achievement-top"><span>{item.category}</span><ArrowUpRight size={15} /></div><strong className="achievement-mark">{item.mark}</strong><h3>{item.title}</h3><p>{item.detail}</p></Reveal>)}</div></section>
+      <section className="section-wrap section-pad" id="web-development">
+        <div className="section-heading">
+          <p className="eyebrow"><span>06</span> WEB DEVELOPMENT</p>
+          <h2>Digital projects and business-facing web work.</h2>
+        </div>
 
-      <section className="education-band section-pad" id="learning"><div className="section-wrap"><SectionHeading index="13" eyebrow="Professional development" title="Always learning. Always evolving." intro="Training and learning are listed transparently; completion status is not assumed where it was not supplied." /><div className="training-grid">{training.map((item, index) => <div className="training-row" key={item.title}><span className="training-index">0{index + 1}</span><div><h3>{item.title}</h3><p>{item.provider}</p></div><span className="training-status">{item.status}</span></div>)}</div></div></section>
+        <div className="web-grid">
+          {webProjects.map((project) => (
+            <article className="web-card" key={project.title}>
+              <div className={`web-preview preview-${project.visual}`} aria-hidden="true" />
+              <div className="web-copy">
+                <p className="eyebrow light"><span>{project.category}</span></p>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="web-meta">
+                  <small>{project.status}</small>
+                  <a href={project.href} target="_blank" rel="noreferrer">Visit <ArrowUpRight size={14} /></a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section className="section-wrap section-pad" id="timeline"><SectionHeading index="14" eyebrow="Personal timeline" title="Every chapter builds the next." intro="Confirmed dates are included. Other milestones remain undated until details are available." /><div className="timeline-list">{timeline.map((item, index) => <div className="timeline-item" key={`${item.title}-${item.period}`}><span className="timeline-index">{(index + 1).toString().padStart(2, "0")}</span><span className="timeline-dot" /><div><small>{item.type}</small><h3>{item.title}</h3></div><time>{item.period}</time></div>)}</div></section>
+      <section className="section-wrap section-pad" id="achievements">
+        <div className="section-heading">
+          <p className="eyebrow"><span>07</span> ACHIEVEMENTS</p>
+          <h2>Discipline in sport, study and performance.</h2>
+        </div>
 
-      <section className="media-band section-pad" id="gallery"><div className="section-wrap media-layout"><div><p className="eyebrow"><span>15</span> PERSONAL ARCHIVE</p><h2>Work, study, training.<br /><em>In real moments.</em></h2></div><div className="media-placeholder-large"><Sparkles size={20} /><p>Professional, university, karate and project photography will appear here when genuine images are supplied.</p><span>NO STOCK PORTRAITS / NO FABRICATED CERTIFICATES</span></div></div></section>
+        <div className="achievement-grid">
+          <div className="achievement-box">
+            <span className="achieve-label">Academic</span>
+            <strong>MSc Data Science</strong>
+            <small>Distinction · University of East London</small>
+          </div>
+          <div className="achievement-box">
+            <span className="achieve-label">Martial arts</span>
+            <strong>{karate.rank}</strong>
+            <small>{karate.style}</small>
+          </div>
+          <div className="achievement-box">
+            <span className="achieve-label">Competition</span>
+            <strong>{medalTotal} medals</strong>
+            <small>13 state · 7 national · 5 international</small>
+          </div>
+          <div className="achievement-box">
+            <span className="achieve-label">Recognition</span>
+            <strong>World Book Record</strong>
+            <small>Recognised in 2021 and 2024</small>
+          </div>
+        </div>
+      </section>
 
-      <section className="contact-cta section-wrap section-pad" id="contact"><div><p className="eyebrow"><span>16</span> OPEN TO MEANINGFUL CONVERSATIONS</p><h2>Let&apos;s connect and create<br /><em>something meaningful.</em></h2><p>Data, analytics, operations, sport or a new opportunity. I&apos;m open to conversations grounded in curiosity and purpose.</p></div><div className="contact-cta-actions"><Link className="button button-lime" href="/contact">Get in touch <ArrowUpRight size={16} /></Link><span>{profile.location}</span>{profile.email && <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>}</div></section>
+      <section className="section-wrap section-pad contact-cta" id="contact">
+        <div className="cta-panel">
+          <div>
+            <p className="eyebrow"><span>07</span> CONTACT</p>
+            <h2>Open to data analyst, BI and operations opportunities.</h2>
+            <p>
+              I’m looking for roles where analytical thinking, operational awareness and effective communication can support better decisions and stronger business outcomes.
+            </p>
+          </div>
+          <div className="cta-actions">
+            {profile.email ? (
+              <a className="button button-primary" href={`mailto:${profile.email}`}>
+                Email me <ArrowUpRight size={15} />
+              </a>
+            ) : null}
+            {profile.github ? (
+              <a className="button button-secondary" href={profile.github} target="_blank" rel="noreferrer">
+                GitHub <ArrowUpRight size={15} />
+              </a>
+            ) : null}
+            {profile.linkedIn ? (
+              <a className="button button-secondary" href={profile.linkedIn} target="_blank" rel="noreferrer">
+                LinkedIn <ArrowUpRight size={15} />
+              </a>
+            ) : null}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

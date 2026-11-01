@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Satish Kumar Nagaraj — Data science, operations and performance analytics";
+export const alt = "Satish Kumar N — Driven by data, defined by discipline, inspired by innovation";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -12,8 +12,8 @@ export default function OpenGraphImage() {
         <span>PORTFOLIO / LONDON</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", fontSize: 83, fontWeight: 600, lineHeight: 1.02, letterSpacing: -5 }}>
-        <span>SATISH KUMAR NAGARAJ</span>
-        <span style={{ marginTop: 22, color: "#9bc8ff", fontSize: 31, fontWeight: 400, letterSpacing: 0 }}>DATA · OPERATIONS · PERFORMANCE</span>
+        <span>SATISH KUMAR N</span>
+        <span style={{ marginTop: 22, color: "#c7f36b", fontSize: 31, fontWeight: 400, letterSpacing: 0 }}>DATA · DISCIPLINE · INNOVATION</span>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid #465047", paddingTop: 19, color: "#a9b1a6", fontSize: 17 }}>
         <span>DATA SCIENCE / OPERATIONS / SHITO-RYU KARATE / WEB</span>

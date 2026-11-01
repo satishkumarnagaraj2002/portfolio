@@ -15,7 +15,11 @@ function isText(value: unknown): value is string {
 export async function POST(request: Request) {
   let payload: ContactPayload;
   try {
-    payload = (await request.json()) as ContactPayload;
+    const parsed = await request.json();
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return NextResponse.json({ message: "Invalid form submission." }, { status: 400 });
+    }
+    payload = parsed as ContactPayload;
   } catch {
     return NextResponse.json({ message: "Invalid form submission." }, { status: 400 });
   }
@@ -43,7 +47,10 @@ export async function POST(request: Request) {
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       from,
       to: [to],

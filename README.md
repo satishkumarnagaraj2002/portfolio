@@ -1,4 +1,4 @@
-# Satish Kumar Nagaraj — Portfolio
+# Satish Kumar N — Portfolio
 
 A Next.js App Router portfolio built with TypeScript, Tailwind CSS, Motion and Lucide React. Content is kept editable in a central data file and unverified details are marked rather than assumed.
 
@@ -51,7 +51,3 @@ Edit `src/data/portfolio.ts` for the profile, experience, education, skills, ana
 - `/contact` — server-validated contact form
 - `/sitemap.xml` and `/robots.txt` — generated SEO endpoints
 # satish-kumar-nagaraj-portfolio
-# Portfolio
-# Portfolio
-# portfolio
-# portfolio
